@@ -11,9 +11,12 @@ https://docs.konghq.com/gateway/latest/plugin-development/file-structure/
 3. Init go plugin
 
 
-docker compose up -d && docker logs gateway_kong -f
 
-docker compose build && docker compose down && docker compose up -d && docker logs gateway_kong -f
+### Run command
+``` bash
+docker compose up -d && docker logs gateway_kong -f
+```
+
 
 
 https://medium.com/@sripusponegoro/create-kong-custom-plugin-golang-354ce0e0ebf0
@@ -22,9 +25,12 @@ https://dev.to/mfbmina/writing-kong-plugins-with-go-1h12
 
 
 1. test upstream service
+```bash
 curl -i -X POST 'http://localhost:9090/api/getCustomerInfo'
+```
 
 2. create service
+```bash
 curl -i -X POST 'http://localhost:8001/services' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -39,8 +45,10 @@ curl -i -X POST 'http://localhost:8001/services' \
   "read_timeout": 6000,
   "enabled": true
 }'
+```
 
 2. create route
+```bash
 curl -i -X POST 'http://localhost:8001/services/my-service/routes' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -63,12 +71,17 @@ curl -i -X POST 'http://localhost:8001/services/my-service/routes' \
   "request_buffering": true,
   "response_buffering": true
 }'
+```
 
+After configuration
 
-
+Let's try
+```sh
 curl -i -X POST 'http://localhost:9000/api/getCustomerInfo'
+```
 
-
+### Apply Custom Plugin
+```sh
 curl -i -X POST 'http://localhost:8001/plugins/services' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -77,8 +90,9 @@ curl -i -X POST 'http://localhost:8001/plugins/services' \
     "message": "World"
   }
 }'
+```
 
-
+```sh
 curl -i -X POST 'http://localhost:8001/plugins' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -87,33 +101,6 @@ curl -i -X POST 'http://localhost:8001/plugins' \
     "message": "World Ja"
   }
 }'
-
-curl -i -X POST 'http://localhost:8001/plugins' \
---header 'Content-Type: application/json' \
---data '{
-  "name": "example-plugin",
-  "config": {
-    "message": "World Ja"
-  }
-}'
-
-
-
-Usecase 
-1. จาก plugin ที่มีลอง get api path แล้วเทียบกับ config เช่น
-confg.api_path = /getCustomer
-
-้ถ้าส่ง /customer จะ return error message ตามที่กำหนด
-
-
-2. ลองทำ plugin ip-whitelist ด้วยตัวเอง
-
-3. ลอง query ของใน db ของ kong เอง
--- Core DAOs
-local services  = kong.db.services
-local routes    = kong.db.routes
-local consumers = kong.db.consumers
-local plugins   = kong.db.plugins
-
+```
 
 
