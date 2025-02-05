@@ -1,0 +1,81 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "status": "success",
+          "messsage": "success"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/api/getCustomerInfo"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "code": "0",
+          "message": "Success",
+          "data": {
+            "cid": "0123456789124",
+            "mobileNo": "0851234567",
+            "email": "aaa@bb.com",
+            "customerID": "52010112"
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/test"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "response": {
+            "headerResp": {
+              "reqID": "1234",
+              "statusCd": "0000",
+              "status": "success",
+              "message": "test"
+            },
+            "content": {
+              "cid": "1234"
+            }
+          }
+        }
+      }
+    },
+    {
+      "priority": 10,
+      "request": {
+        "method": "ANY",
+        "urlPattern": ".*"
+      },
+      "response": {
+        "status": 404,
+        "jsonBody": {
+          "status": "error",
+          "message": "Endpoint not found"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

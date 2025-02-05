@@ -1,0 +1,6 @@
+go 1.23
+
+use (
+	./go_modules/example-plugin
+	./go_modules/my-plugin
+)
