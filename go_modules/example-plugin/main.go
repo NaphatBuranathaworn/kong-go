@@ -41,17 +41,3 @@ func (conf Config) Access(kong *pdk.PDK) {
 	}
 	kong.Response.SetHeader("x-hello-from-example-plugin", fmt.Sprintf("Go says %s to %s", message, host))
 }
-
-func (conf Config) Certificate(kong *pdk.PDK) {
-	kong.Log.Info("This is an example-plugin")
-	host, err := kong.Request.GetHeader("host")
-	if err != nil {
-		log.Printf("Error reading 'host' header: %s", err.Error())
-	}
-
-	message := conf.Message
-	if message == "" {
-		message = "What's up"
-	}
-	kong.Response.SetHeader("x-hello-from-example-plugin", fmt.Sprintf("Go says %s to %s", message, host))
-}
