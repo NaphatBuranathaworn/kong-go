@@ -1,3 +1,5 @@
+# This repository basic setup local environment for develop custom plugin kong with golang
+
 
 1. Set up directory
 ```
