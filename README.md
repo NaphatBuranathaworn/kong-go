@@ -1,14 +1,13 @@
 
 1. Set up directory
-
+```
 https://docs.konghq.com/gateway/latest/plugin-development/get-started/setup/
+```
 
 2. Understand file structure
-
+```
 https://docs.konghq.com/gateway/latest/plugin-development/file-structure/
-
-
-3. Init go plugin
+```
 
 
 
@@ -16,11 +15,6 @@ https://docs.konghq.com/gateway/latest/plugin-development/file-structure/
 ``` bash
 docker compose up -d && docker logs gateway_kong -f
 ```
-
-
-
-https://medium.com/@sripusponegoro/create-kong-custom-plugin-golang-354ce0e0ebf0
-https://dev.to/mfbmina/writing-kong-plugins-with-go-1h12
 
 
 
@@ -73,9 +67,9 @@ curl -i -X POST 'http://localhost:8001/services/my-service/routes' \
 }'
 ```
 
-After configuration
+### After configuration
 
-Let's try
+### Let's try
 ```sh
 curl -i -X POST 'http://localhost:9000/api/getCustomerInfo'
 ```
@@ -104,3 +98,6 @@ curl -i -X POST 'http://localhost:8001/plugins' \
 ```
 
 
+#### Source
+https://medium.com/@sripusponegoro/create-kong-custom-plugin-golang-354ce0e0ebf0
+https://dev.to/mfbmina/writing-kong-plugins-with-go-1h12
